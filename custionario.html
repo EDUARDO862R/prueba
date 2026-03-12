@@ -20,7 +20,7 @@ body{
 }
 
 h1{
-    color: #d62828;
+    color: #9308e4;
 }
 
 .question{
@@ -31,7 +31,7 @@ h1{
 button{
     margin-top: 20px;
     padding: 10px 20px;
-    background: #d62828;
+    background: #5c00d4;
     color: white;
     border: none;
     border-radius: 5px;
@@ -39,7 +39,7 @@ button{
 }
 
 button:hover{
-    background: #a4161a;
+    background: #ff00dd;
 }
 </style>
 
@@ -48,7 +48,7 @@ button:hover{
 <body>
 
 <div class="container">
-<h1>🍎 Cuestionario de Manzanas</h1>
+<h1>🍎 Cuestionario de Frutas</h1>
 
 <form id="quiz">
 
@@ -82,6 +82,19 @@ button:hover{
 <label><input type="radio" name="q5" value="no"> No</label>
 </div>
 
+<div class="question">
+<p>6. ¿Qué fruta te gusta más?</p>
+<label><input type="radio" name="q6" value="manzana"> Manzana</label><br>
+<label><input type="radio" name="q6" value="sandia"> Sandía</label><br>
+<label><input type="radio" name="q6" value="platano"> Plátano</label>
+</div>
+
+<div class="question">
+<p>7. ¿Cómo prefieres la fruta?</p>
+<label><input type="radio" name="q7" value="entera"> Entera</label><br>
+<label><input type="radio" name="q7" value="zumo"> En zumo</label>
+</div>
+
 <button type="button" onclick="resultado()">Ver resultado</button>
 
 </form>
@@ -95,8 +108,20 @@ function resultado(){
     let respuestas = document.querySelectorAll('input[value="si"]:checked');
     let total = respuestas.length;
 
-    document.getElementById("resultado").innerHTML =
-    "Has respondido 'Sí' en " + total + " preguntas.";
+    let fruta = document.querySelector('input[name="q6"]:checked');
+    let forma = document.querySelector('input[name="q7"]:checked');
+
+    let mensaje = "Has respondido 'Sí' en " + total + " preguntas.";
+
+    if(fruta){
+        mensaje += "<br>Tu fruta favorita es: " + fruta.value;
+    }
+
+    if(forma){
+        mensaje += "<br>Prefieres la fruta: " + forma.value;
+    }
+
+    document.getElementById("resultado").innerHTML = mensaje;
 }
 </script>
 
